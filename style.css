@@ -1,0 +1,46 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  margin: 20px;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #3498db;
+  padding: 10px;
+
+   border-radius: 15px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #fff;
+}
+
+.card {
+  display: inline-block;
+  margin: 10px;
+  border: 2px solid #2F4F4F;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 300px;
+
+}
+
+.card-content {
+  padding: 20px;
+}
+
+#countdownText1, #countdownText2 {
+  font-size: 18px;
+  color: #  #000000;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 80%;
+  }
+}
+

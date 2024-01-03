@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temps Restant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Le Temps Restant</h1>
+</header>
+
+<div class="card" id="countdown1">
+  <div class="card-content">
+    <p id="countdownText1"></p>
+  </div>
+</div>
+
+<div class="card" id="countdown2">
+  <div class="card-content">
+    <p id="countdownText2"></p>
+  </div>
+</div>
+
+<div id="tableau-container">
+  <div id="tableau"></div>
+</div>
+
+
+<script>
+  // Date de l'événement (prochain anniversaire)
+  const eventDate = new Date('April 27, 2024 00:00:00 GMT+00:00').getTime();
+
+  // Date à laquelle vous aurez 60 ans
+  const sixtyYearsDate = new Date('April 27, 2064 00:00:00 GMT+00:00').getTime();
+
+  // Heures de sommeil (de 23h à 8h)
+  const sleepStartHour = 23;
+  const sleepEndHour = 8;
+
+  // Mise à jour du temps restant toutes les secondes
+  const x = setInterval(function() {
+    const now = new Date().getTime();
+    let distance1, distance2;
+
+    if (now < eventDate) {
+      // Si la date actuelle est avant le prochain anniversaire
+      distance1 = eventDate - now;
+      document.getElementById('countdownText1').innerHTML = `Temps restant jusqu'au prochain anniversaire: ${Math.floor(distance1 / (1000 * 60 * 60 * 24))} jours`;
+    } else {
+      // Si la date actuelle est après le prochain anniversaire
+      distance1 = 0;
+      document.getElementById('countdownText1').innerHTML = "L'anniversaire est terminé !";
+    }
+
+    // Si la date actuelle est avant les 60 ans
+    if (now < sixtyYearsDate) {
+      // Enlever le temps de sommeil du calcul
+      const sleepHours = (sleepEndHour - sleepStartHour + 24) % 24;
+      distance2 = sixtyYearsDate - now - (sleepHours * 60 * 60 * 1000);
+      document.getElementById('countdownText2').innerHTML = `Temps restant jusqu'à vos 60 ans: ${Math.floor(distance2 / (1000 * 60 * 60 * 24))} jours`;
+    } else {
+      // Si la date actuelle est après les 60 ans
+      distance2 = 0;
+      document.getElementById('countdownText2').innerHTML = "Vous avez atteint vos 60 ans !";
+    }
+
+    // Si l'événement est terminé, arrêter le compteur
+    if (distance1 < 0 || distance2 < 0) {
+      clearInterval(x);
+    }
+  }, 1000);
+
+
+</script>
+
+</body>
+</html>
